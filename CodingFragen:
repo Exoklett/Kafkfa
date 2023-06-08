@@ -1,0 +1,42 @@
+Was wäre eine mögliche Datenbank zur Speicherung der Daten (Vor-/ Nachteile) ? 
+
+Der Datenbank Entwurf hängt klassisch direkt von den Bedürfnissen sowie Anforderungen des Endnutzers ab.
+Im folgenden kann man 3 allgemeine Optionen benennen die im konkreten Fall Anwenudng finden könnten:
+
+1) Sollte der Endandwender hohen Wert auf Skalierbarkeit von einer großen Datenmenge sowie eine leistungsstarken Umgang mit Such- und Aggregationsfunktionen legen,
+wären mögliche Lösung Im Bereich NoSQl wie Elasticsearch oder MongoDB denkbar. Erstere unterstützt sogar in Teilen Funktionen von Zeitreihendatenbanken. NoSQL-Datenbanken sind aber relationalen Datenebanken
+gemäß der Integritäts- und Konsistenzprüfung relationalen unterlegen. 
+
+2) Zeitreihendatenbanken in Form von CrateDB oder InfluxDB. Hiermit ist z.B. Speichern, Aufzeichnen, Analysieren und Verarbeiten auf zeitlicher Ebende besonders einfach umzusetzen.
+Diese Stärke ist Nachteil so gleich wenn der Anwendungsfall über die Funktionalität der Zeitreihen hinausgeht.
+
+3) Eine weitere Optionen sind die weitaus verbreiterten Relationalen Datnebanken. Wie obig erwähnt glänzen diese durch Ihre Integritäts- und Konsistenzprüfungen und die leichte Bedienbarkeit von SQL.
+Ein Nachteil sind die starren Datenmodelle, die nicht die Flexibilität obiger Datenbanken ermöglicht. 
+
+Letztendlich ist eine Bestimmung der passsenden Datenbank ohne weitere genauere Informationen schwer. Aus den hier gegebenen Daten würde ich auf NoSQl Datenbanken wie Elastisearch oder ähnliche zurückweichen, da es
+Funktionen aller drei obigen Datenbankarten in Teilen vereint.
+
+Welches Datenmodell wäre deiner Meinung sinnvoll zur Ablage des Events ?
+
+NoSQL Ansatz mit JSON:
+
+{
+"id" = ..., 
+"url" = ...,
+"Zeitpunkt" = ..., 
+"Dauer" ...,
+"ZeitpunktEnde" = ...,
+"Änderungsart" = ...,
+.
+.
+.
+}
+
+
+Welche Topics wären sinnvoll? Beschreibe Vor-/Nachteile deiner Topic Struktur in Hinblick auf zum Beispiel Skalierbarkeit.
+
+1) edits_de: Ein Topic speziell für alle Änderungen der deutschen Wikipedia. Ermöglicht schnell und präzise die Filterung einer bestimmten Sprache. 
+Hat jedoch den Nachteil das die Daten fragmnetiert über verschiedene Datentabelle/Datenstrukturen verteilt sind. 
+
+2) edits: Ein topic für Änderungen aller Wikipedia Seiten. Vorteil: Einfach im Umgang und Aufbau da alle Daten defragmentiert sind sowie folgich auch einfach Skalierbar. Nachteil jedoch darin das Daten zu spezfischen Sprachen erst
+gefiltert werden müssen.
