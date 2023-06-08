@@ -62,19 +62,19 @@ def main():
     for i in range (20):   
         databuff_en = responseCall_en()
         databuff_de = responseCall_de()  
-        # changesen = databuff_en["query"]["recentchanges"]
-        # num_en = str(len(changesen))
-        # changesde = databuff_de["query"]["recentchanges"]
-        # num_de = str(len(changesde))
+        changesen = databuff_en["query"]["recentchanges"]
+        num_en = str(len(changesen))
+        changesde = databuff_de["query"]["recentchanges"]
+        num_de = str(len(changesde))
         
-        # here is a quick and simple approach:
+        #here is a quick and simple approach:
         # 2 topics for every needed argument or data/input stream
         # has the advantage of a seperated data access
         
         sleep(random.randrange(0,1))
-        # producer.send(topic_en, value=num_en.encode('utf-8'))
-        # producer.send(topic_de, value=num_de.encode('utf-8'))
-        producer.send(topic_en,value=databuff_en)
+        producer.send(topic_en, value=num_en.encode('utf-8'))
+        roducer.send(topic_de, value=num_de.encode('utf-8'))
+        #producer.send(topic_en,value=databuff_en)
      
     producer.flush()
     producer.close()
