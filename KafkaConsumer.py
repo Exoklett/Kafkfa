@@ -12,7 +12,7 @@ def main():
     topic_de = "WikiEdits_DE"
     
     Consumer_EN = KafkaConsumer(topic_en, bootstrap_servers=bootstrap_servers)
-    
+    Consumer_DE = KafkaConsumer(topic_de, bootstrap_servers=bootstrap_servers)
     
     while True:
     
@@ -21,8 +21,7 @@ def main():
             input = message.value.decode('utf-8')
             print(f"Received message: {input}")
             edits_amounts_en = input
-            
-        Consumer_DE = KafkaConsumer(topic_de, bootstrap_servers=bootstrap_servers)
+          
         
         for message in Consumer_DE:
             input = message.value.decode('utf-8')
